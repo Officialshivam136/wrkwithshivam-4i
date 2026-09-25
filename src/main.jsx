@@ -6,10 +6,10 @@ import { AboutSection, ConstructionBanner, ContactSection, ExperienceSection, Fo
 function App() {
   const [light, setLight] = useState(() => localStorage.getItem('shivam-theme') === 'light')
   useEffect(() => { localStorage.setItem('shivam-theme', light ? 'light' : 'dark') }, [light])
-  return <div className={light ? 'site light' : 'site'}>
+  return <div className={`${light ? 'site light' : 'site'} antialiased`}>
     <Header light={light} onToggle={() => setLight(value => !value)} />
     <ConstructionBanner />
-    <main id="top"><HeroSection /><Marquee /><SkillsSection /><ExperienceSection /><WorkSection /><AboutSection /><ReviewsSection /><ContactSection /></main>
+    <main id="top" className="relative isolate"><HeroSection /><Marquee /><SkillsSection /><ExperienceSection /><WorkSection /><AboutSection /><ReviewsSection /><ContactSection /></main>
     <Footer />
   </div>
 }
