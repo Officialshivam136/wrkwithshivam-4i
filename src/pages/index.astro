@@ -19,6 +19,7 @@ const projects = [
     <header class="header wrap">
       <a class="brand" href="#top">SHIVAM SINGH <span>ENGINEER & CTO</span></a>
       <nav aria-label="Sections"><a href="#work">WORK</a><a href="#process">PROCESS</a><a href="#stack">STACK</a><a href="#contact">CONTACT</a></nav>
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><span class="theme-icon" aria-hidden="true">☼</span><span class="theme-label">LIGHT</span></button>
       <a class="availability" href="mailto:hello@wrkwithshivam.dev"><i></i> AVAILABLE FOR WORK</a>
     </header>
 
@@ -60,4 +61,31 @@ const projects = [
 </style>
 <style is:global>
   ::selection{background:var(--green);color:var(--bg)}
+  .theme-toggle{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:transparent;color:var(--muted);padding:7px 10px;cursor:pointer;font:10px 'DM Mono',monospace;letter-spacing:.12em;transition:color .2s,border-color .2s}
+  .theme-toggle:hover{color:var(--ink);border-color:var(--muted)}
+  .theme-icon{font-size:15px;line-height:1;color:var(--green)}
+  html.light{--bg:#f1efe7;--ink:#171714;--muted:#686860;--line:#d2d0c5;--green:#347a42;--red:#9d554f}
+  html.light body:before{opacity:.14}
+  html.light .construction-banner{color:#f8eee9}
 </style>
+<script>
+  const toggle = document.querySelector('.theme-toggle')
+  const root = document.documentElement
+  const savedTheme = localStorage.getItem('shivam-theme')
+  if (savedTheme === 'light') root.classList.add('light')
+  const syncThemeControl = () => {
+    const isLight = root.classList.contains('light')
+    toggle?.setAttribute('aria-pressed', String(isLight))
+    toggle?.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode')
+    const label = toggle?.querySelector('.theme-label')
+    if (label) label.textContent = isLight ? 'DARK' : 'LIGHT'
+    const icon = toggle?.querySelector('.theme-icon')
+    if (icon) icon.textContent = isLight ? '☾' : '☼'
+  }
+  syncThemeControl()
+  toggle?.addEventListener('click', () => {
+    root.classList.toggle('light')
+    localStorage.setItem('shivam-theme', root.classList.contains('light') ? 'light' : 'dark')
+    syncThemeControl()
+  })
+</script>
