@@ -20,7 +20,7 @@
 
 /* Keep the about portrait compact so the story remains the visual focus. */
 .about-grid .portrait { max-width: 420px; justify-self: start; }
-.about-grid .portrait img { width: 100%; max-width: 420px; max-height: 560px; object-fit: cover; }
+.about-grid .portrait img { width: 100%; max-width: 420px; max-height: 560px; object-fit: cover; }.schedule-card { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-top:16px; padding:16px 18px; border:1px solid var(--line); background:var(--panel); transition:border-color .2s, transform .2s, background .2s; }.schedule-card:hover { border-color:var(--green); transform:translateY(-2px); }.schedule-card span:first-child { display:flex; flex-direction:column; gap:4px; }.schedule-card small { color:var(--green); font:10px 'DM Mono',monospace; letter-spacing:.14em; }.schedule-card strong { font-size:16px; }.schedule-card em { color:var(--muted); font-size:11px; font-style:normal; }.schedule-arrow { color:var(--green); font-size:24px; }.schedule-card:focus-visible { outline:2px solid var(--green); outline-offset:4px; }
 @media (max-width: 760px) {
   .about-grid .portrait { max-width: 320px; margin-inline: auto; }
   .about-grid .portrait img { max-width: 320px; max-height: 430px; }
