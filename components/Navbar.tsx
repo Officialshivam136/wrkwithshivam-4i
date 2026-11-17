@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { siteConfig } from '@/data/site';
 import { cn } from '@/lib/utils';
 import { BookingModal } from '@/components/BookingModal';
+import { ThemeToggle } from '@/components/ui/ThemeToggle';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -78,6 +79,7 @@ export function Navbar() {
   };
 
   return (
+    <>
     <header
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out',
@@ -97,7 +99,7 @@ export function Navbar() {
           <Link
             href="#top"
             onClick={(e) => handleSmoothScroll(e, '#top')}
-            className="font-heading font-bold text-lg tracking-tight text-text-primary z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm flex items-center gap-2"
+            className="font-heading font-bold text-lg tracking-tight text-text-primary z-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm flex items-center gap-2 py-2.5"
           >
             <span className="w-2 h-2 rounded-full bg-accent inline-block" />
             {siteConfig.logo}
@@ -135,6 +137,7 @@ export function Navbar() {
 
             <div className="w-px h-6 bg-border-light mx-4" />
 
+            <ThemeToggle className="mr-3" />
 
             <button
               onClick={() => setIsBookingOpen(true)}
@@ -148,9 +151,11 @@ export function Navbar() {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile: theme switch + menu button */}
+          <div className="md:hidden z-50 flex items-center gap-1">
+          <ThemeToggle className="h-9 w-9" />
           <button
-            className="md:hidden z-50 flex flex-col justify-center items-center w-10 h-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md"
+            className="z-50 flex flex-col justify-center items-center w-10 h-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-md"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMobileMenuOpen}
@@ -168,8 +173,11 @@ export function Navbar() {
               className="w-5 h-0.5 bg-text-primary block"
             />
           </button>
+          </div>
         </div>
       </div>
+
+    </header>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -179,7 +187,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 bg-bg-primary/98 backdrop-blur-xl flex flex-col items-center justify-center overflow-y-auto py-24"
           >
             <nav className="flex flex-col items-center gap-6">
               {siteConfig.navItems.map((item, i) => {
@@ -230,6 +238,6 @@ export function Navbar() {
       </AnimatePresence>
 
       <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
-    </header>
+    </>
   );
 }

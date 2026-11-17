@@ -1,15 +1,47 @@
+import { siteConfig } from '@/data/site';
+
+export interface ExperienceLink {
+  label: string;
+  href: string;
+}
+
 export interface Experience {
   id: string;
   role: string;
   company: string;
-  type: 'full-time' | 'internship' | 'freelance';
-  startDate: string;
+  type: 'founder' | 'full-time' | 'internship' | 'freelance';
+  /** Leave empty to show only the end date (e.g. "Present"). */
+  startDate?: string;
   endDate: string;
   location: string;
+  summary?: string;
   highlights: string[];
+  links?: ExperienceLink[];
 }
 
+const companyLinks: ExperienceLink[] = [
+  { label: 'Instagram', href: siteConfig.company.instagram },
+  { label: 'Google', href: siteConfig.company.google },
+].filter((link) => link.href);
+
 export const experience: Experience[] = [
+  {
+    id: 'founder',
+    role: 'Founder & Freelance Developer',
+    company: siteConfig.company.name,
+    type: 'founder',
+    endDate: 'Present',
+    location: siteConfig.company.location,
+    summary:
+      'My own studio — where I take on freelance projects for businesses and startups.',
+    highlights: [
+      `Founded ${siteConfig.company.name} in Bijnor to build websites, SaaS products, AI automations and AI-powered tools for businesses and startups.`,
+      'Own every client project end to end — discovery, design, development, deployment and ongoing support.',
+      'Help local businesses move online with fast, mobile-first websites that are easy to find and easy to use.',
+      'Work directly with founders and owners, turning rough ideas into clear scope, timelines and shipped products.',
+    ],
+    links: companyLinks,
+  },
   {
     id: '1',
     role: 'Freelance Website Developer',
@@ -25,6 +57,7 @@ export const experience: Experience[] = [
       'Applied on-page SEO (meta titles, descriptions, heading hierarchy, image alt text) to improve search visibility.',
       'Improved page speed through image compression, caching and asset optimization for faster loading on mobile networks.',
     ],
+    links: [{ label: 'Website', href: 'https://modomgrooming.com/' }],
   },
   {
     id: '2',

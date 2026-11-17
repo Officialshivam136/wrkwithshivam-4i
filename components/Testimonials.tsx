@@ -3,6 +3,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { AnimateIn } from '@/components/ui/AnimateIn';
 import { testimonials, type Testimonial } from '@/data/testimonials';
 import { fadeInUp } from '@/lib/animations';
+import { TiltCard } from '@/components/ui/TiltCard';
 
 export function Testimonials() {
   if (!testimonials || testimonials.length === 0) {
@@ -23,7 +24,9 @@ export function Testimonials() {
               key={testimonial.id}
               variants={fadeInUp}
               delay={index * 0.1}
+              className="h-full"
             >
+              <TiltCard max={3} className="rounded-2xl">
               <div className="p-8 rounded-2xl border border-border bg-bg-secondary h-full flex flex-col">
                 {/* Quote Icon */}
                 <svg
@@ -48,6 +51,7 @@ export function Testimonials() {
                   </p>
                 </div>
               </div>
+              </TiltCard>
             </AnimateIn>
           ))}
         </div>

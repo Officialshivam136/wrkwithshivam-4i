@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { slideInLeft, slideInRight } from '@/lib/animations';
 import { Container } from '@/components/ui/Container';
+import { TiltCard } from '@/components/ui/TiltCard';
+import { siteConfig } from '@/data/site';
 
 export function About() {
   return (
@@ -24,9 +26,11 @@ export function About() {
             </motion.h2>
 
             <p className="mt-6 text-text-secondary text-lg leading-relaxed">
-              Founded by Shivam Singh — a Computer Science Engineer and full-stack
-              developer specializing in modern web applications, SaaS products
-              and AI-powered systems.
+              I&apos;m Shivam Singh — a Computer Science Engineer, full-stack
+              developer and the founder of{' '}
+              <span className="text-text-primary font-medium">{siteConfig.company.name}</span>,
+              {' '}{siteConfig.company.location.split(',')[0]}. I specialize in modern web
+              applications, SaaS products, AI automations and AI-powered systems.
             </p>
 
             <p className="mt-4 text-text-secondary leading-relaxed">
@@ -56,8 +60,9 @@ export function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="hidden lg:flex justify-center mt-12 lg:mt-0"
+            className="flex justify-center mt-14 lg:mt-0"
           >
+            <TiltCard max={10} glare={false}>
             <div className="relative">
               {/* Accent glow behind photo */}
               <div className="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl" />
@@ -65,10 +70,16 @@ export function About() {
                 <img
                   src="/shivam-singh.jpg"
                   alt="Shivam Singh — Full-Stack Developer"
-                  className="w-[380px] h-[460px] object-cover object-top"
+                  className="w-[300px] h-[370px] sm:w-[380px] sm:h-[460px] object-cover object-top"
                 />
               </div>
+              {/* Floating badge, lifted off the photo in 3D */}
+              <div className="absolute -bottom-5 -left-5 rounded-xl border border-border-light bg-bg-elevated/90 backdrop-blur px-4 py-3 shadow-xl shadow-black/40 [transform:translateZ(50px)]">
+                <p className="text-[11px] uppercase tracking-[0.18em] text-text-tertiary">Founder</p>
+                <p className="font-heading font-semibold text-text-primary text-sm mt-0.5">{siteConfig.company.name}</p>
+              </div>
             </div>
+            </TiltCard>
           </motion.div>
         </div>
       </Container>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { fadeInUp } from '@/lib/animations';
 import { type Project } from '@/data/projects';
+import { TiltCard } from '@/components/ui/TiltCard';
 
 interface ProjectCardProps {
   project: Project;
@@ -21,8 +22,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView="visible"
       viewport={{ once: true, margin: '-50px' }}
       custom={index}
-      className="group rounded-2xl border border-border bg-bg-secondary overflow-hidden flex flex-col"
+      className="h-full"
     >
+      <TiltCard max={4} className="rounded-2xl">
+      <div className="group h-full rounded-2xl border border-border bg-bg-primary overflow-hidden flex flex-col hover:border-accent/40 transition-colors duration-300">
       {/* Image Area */}
       <div className="w-full aspect-[16/10] relative overflow-hidden bg-bg-elevated">
         {project.image ? (
@@ -82,7 +85,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             {project.slug && (
               <Link
                 href={`/work/${project.slug}`}
-                className="text-sm font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+                className="text-sm font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1 py-3 -my-3"
               >
                 View Project <span aria-hidden="true">&rarr;</span>
               </Link>
@@ -92,14 +95,16 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+                className="text-sm font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1 py-3 -my-3"
               >
-                Live Demo <span aria-hidden="true">&nearr;</span>
+                Live Demo <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
         )}
       </div>
+      </div>
+      </TiltCard>
     </motion.div>
   );
 }

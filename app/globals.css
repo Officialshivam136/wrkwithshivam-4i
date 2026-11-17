@@ -1,16 +1,60 @@
 @import "tailwindcss";
 
+/* `dark:` utilities follow the theme switch (data-theme on <html>), not just the OS setting. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* ── Theme colours ─────────────────────────────────────────────
+   Dark is the default; light is applied with data-theme="light"
+   (set before first paint by the script in layout.tsx). */
+:root {
+  color-scheme: dark;
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-elevated: #1a1a1a;
+  --text-primary: #fafafa;
+  --text-secondary: #8a8a93;
+  --text-tertiary: #5c5c66;
+  --border: #222222;
+  --border-light: #333333;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --grad-1: #818cf8;
+  --grad-2: #22d3ee;
+  --grad-3: #f472b6;
+  --glare: rgba(129, 140, 248, 0.16);
+  --scroll-thumb: #333333;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg-primary: #f6f7f9;   /* soft paper, not stark white */
+  --bg-secondary: #ffffff; /* raised surfaces */
+  --bg-elevated: #eceef3;
+  --text-primary: #12141a;
+  --text-secondary: #4b5262;
+  --text-tertiary: #6b7384;
+  --border: #e2e5ec;
+  --border-light: #cfd4de;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --grad-1: #4f46e5;
+  --grad-2: #0891b2;
+  --grad-3: #db2777;
+  --glare: rgba(79, 70, 229, 0.09);
+  --scroll-thumb: #c4c9d4;
+}
+
 @theme inline {
-  --color-bg-primary: #0a0a0a;
-  --color-bg-secondary: #111111;
-  --color-bg-elevated: #1a1a1a;
-  --color-text-primary: #fafafa;
-  --color-text-secondary: #888888;
-  --color-text-tertiary: #555555;
-  --color-border: #222222;
-  --color-border-light: #333333;
-  --color-accent: #6366f1;
-  --color-accent-hover: #818cf8;
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-inter);
 }
@@ -18,7 +62,7 @@
 html {
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: #333333 #0a0a0a;
+  scrollbar-color: var(--scroll-thumb) var(--bg-primary);
 }
 
 body {
@@ -39,16 +83,28 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: var(--scroll-thumb);
   border-radius: 3px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #555555;
+/* Fade colours smoothly while the theme is being switched (class is removed right after). */
+html.theme-switching,
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, fill 0.35s ease, stroke 0.35s ease !important;
+}
+
+/* Light mode gets depth from soft layered shadows, the way real surfaces do. */
+:root[data-theme="light"] :is(.rounded-xl, .rounded-2xl, .rounded-3xl).border:not([class*="shadow"]) {
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px -14px rgba(16, 24, 40, 0.14);
+}
+:root[data-theme="light"] :is(.rounded-2xl, .rounded-3xl).border:not([class*="shadow"]):hover {
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 18px 40px -16px rgba(79, 70, 229, 0.25);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -60,4 +116,36 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Gradient headline text */
+.text-gradient {
+  background-image: linear-gradient(100deg, var(--grad-1) 0%, var(--grad-2) 55%, var(--grad-3) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Endless horizontal ticker (Capabilities strip) */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Data flowing along a connector (AI Automation graphic) */
+@keyframes flow {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+.flow-line {
+  stroke-dasharray: 4 4;
+  animation: flow 1s linear infinite;
 }

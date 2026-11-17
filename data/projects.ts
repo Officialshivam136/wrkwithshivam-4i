@@ -12,6 +12,8 @@ export interface Project {
   caseStudyUrl?: string;
   featured: boolean;
   status: 'published' | 'coming-soon' | 'draft';
+  /** Shown as the large flagship card above the project grid. */
+  hero?: boolean;
   problem?: string;
   goal?: string;
   solution?: string;
@@ -33,7 +35,7 @@ export const projects: Project[] = [
       'Corporate website for Sunteck Realty — one of Mumbai\'s leading luxury real estate developers.',
     description:
       'Built the corporate website for Sunteck Realty, a publicly listed luxury real estate development company based in Mumbai. The website serves as the primary digital presence for the brand, showcasing their premium residential and commercial properties across Mumbai.',
-    image: 'https://image.thum.io/get/width/800/crop/500/https://www.sunteckindia.com/',
+    image: '/projects/sunteck-realty.jpg',
     technologies: ['HTML', 'CSS', 'JavaScript'],
     liveUrl: 'https://www.sunteckindia.com/',
     featured: true,
@@ -56,7 +58,7 @@ export const projects: Project[] = [
       'E-commerce website and social media management for a premium grooming brand based in Zürich, Switzerland.',
     description:
       'Built and manage the full e-commerce website and social media presence for MODOM Grooming — a premium haircare and grooming brand based in Zürich, Switzerland. The website features a complete online store with product catalog, shopping cart, user accounts, and secure checkout.',
-    image: 'https://image.thum.io/get/width/800/crop/500/https://modomgrooming.com/',
+    image: '/projects/modom-grooming.jpg',
     technologies: ['WordPress', 'WooCommerce', 'CSS', 'JavaScript'],
     liveUrl: 'https://modomgrooming.com/',
     featured: true,
@@ -81,7 +83,7 @@ export const projects: Project[] = [
       'A movie trailer watching platform — browse, search and watch trailers for the latest and trending movies.',
     description:
       'Movix is a movie trailer watching website that lets users discover, search and watch trailers for trending, popular and upcoming movies. The platform pulls real-time data from movie databases to keep content fresh and up-to-date.',
-    image: 'https://image.thum.io/get/width/800/crop/500/https://movix-gilt.vercel.app/',
+    image: '/projects/movix.jpg',
     technologies: ['React', 'JavaScript', 'CSS', 'API Integration'],
     featured: true,
     status: 'coming-soon',
@@ -103,7 +105,7 @@ export const projects: Project[] = [
       'Corporate website for a digital product engineering agency — premium design with service showcases, case studies and lead generation.',
     description:
       'Built the corporate website for LeaveCode Technologies, a full-stack product engineering agency offering web and mobile application development, cloud infrastructure, and data-driven SEO solutions. The site positions the brand as an enterprise-grade partner for startups and businesses.',
-    image: 'https://image.thum.io/get/width/800/crop/500/https://leavecodetech.netlify.app/',
+    image: '/projects/leavecode-technologies.jpg',
     technologies: ['React', 'Next.js', 'Tailwind CSS', 'JavaScript'],
     liveUrl: 'https://leavecodetech.netlify.app/',
     featured: true,
@@ -127,7 +129,7 @@ export const projects: Project[] = [
       'Website for a fractional EdTech growth team — specializing in server-side tracking, paid acquisition audits, and RevOps for scaling SaaS.',
     description:
       'Built the website for CodePlaced, a fractional growth engineering team that helps EdTech and SaaS companies scale through server-side tracking, paid acquisition audits, and RevOps consulting. The site communicates their niche expertise and drives qualified inbound leads.',
-    image: 'https://image.thum.io/get/width/800/crop/500/https://codeplaced-test.netlify.app/',
+    image: '/projects/codeplaced.jpg',
     technologies: ['React', 'Tailwind CSS', 'JavaScript', 'Netlify'],
     liveUrl: 'https://codeplaced-test.netlify.app/',
     featured: true,
@@ -139,6 +141,53 @@ export const projects: Project[] = [
       'Responsive layout optimized for all screen sizes',
       'Fast static deployment on Netlify',
       'Clear call-to-action flows for lead capture',
+    ],
+  },
+  {
+    id: '6',
+    slug: 'bmb-bijnor',
+    title: 'Bikaner Misthan Bhandar',
+    category: 'Web Development',
+    shortDescription:
+      'Full-stack e-commerce website for a traditional sweet shop in Bijnor — online menu, ordering system, and patron rewards program.',
+    description:
+      'Built a complete e-commerce website for Bikaner Misthan Bhandar (BMB), a beloved sweet shop in Civil Lines, Bijnor known for their pure desi ghee mithai and snacks. The site features an online menu with categorized sweets, a patron rewards loyalty program, promotional coupons, and a modern ordering experience — bringing a traditional local business into the digital age.',
+    image: '/projects/bmb-bijnor.jpg',
+    technologies: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript', 'Vercel'],
+    liveUrl: 'https://bmb-civil-lines-bijnor.vercel.app/',
+    githubUrl: 'https://github.com/Officialshivam136/bmb-civil-lines-bijnor',
+    featured: true,
+    status: 'published',
+    goal: 'Digitize a traditional Bijnor sweet shop with a modern e-commerce website that showcases their menu, enables online ordering, and builds customer loyalty through a VIP patron rewards system.',
+    features: [
+      'Categorized menu — Traditional Mithai, Kaju & Dry Fruits, Barfi & Milk Sweets, Laddu, Snacks & Chaat, Festive Gift Boxes',
+      'VIP Patron Rewards program with order tracking and flat 10% discount',
+      'Promotional offers and festive coupon system',
+      'Responsive design optimized for mobile ordering',
+      'Fast, SEO-optimized Next.js build deployed on Vercel',
+      'Local business branding with premium visual design',
+    ],
+  },
+  {
+    id: '7',
+    slug: 'voiceai-whatsapp-assistant',
+    title: 'VoiceAI WhatsApp Assistant',
+    category: 'AI Product',
+    shortDescription:
+      'One voice-powered assistant on WhatsApp that books your groceries, flights, trains and movies — all in a single chat.',
+    description:
+      'VoiceAI WhatsApp Assistant is an AI assistant that lives inside WhatsApp. Instead of juggling separate apps for groceries, flights, trains and movie tickets, you simply tell it what you need — by voice or text — and it handles the booking for you in one conversation. Currently in development.',
+    image: '',
+    technologies: ['Voice AI', 'WhatsApp', 'Automation'],
+    featured: true,
+    hero: true,
+    status: 'coming-soon',
+    goal: 'Replace a phone full of booking apps with one assistant you can talk to on WhatsApp.',
+    features: [
+      'Voice and text requests, straight from WhatsApp',
+      'Grocery orders in a single message',
+      'Flight and train booking',
+      'Movie ticket booking',
     ],
   },
 ];

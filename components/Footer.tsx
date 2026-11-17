@@ -37,6 +37,22 @@ const LinkedinIcon = () => (
   </svg>
 );
 
+const InstagramIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" />
+  </svg>
+);
+
 const MailIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -73,6 +89,9 @@ export function Footer() {
             <p className="text-text-secondary text-sm">
               {siteConfig.tagline}
             </p>
+            <p className="text-text-tertiary text-xs">
+              Founder, {siteConfig.company.name} &middot; {siteConfig.company.location}
+            </p>
           </div>
 
           {/* Middle: Quick Links */}
@@ -81,7 +100,7 @@ export function Footer() {
               <Link
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-1 py-0.5"
+                className="text-sm font-medium text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm px-2 py-2.5"
               >
                 {item.label}
               </Link>
@@ -95,7 +114,7 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-1"
+              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-2.5"
             >
               <GithubIcon />
             </a>
@@ -104,14 +123,25 @@ export function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-1"
+              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-2.5"
             >
               <LinkedinIcon />
             </a>
+            {siteConfig.company.instagram && (
+              <a
+                href={siteConfig.company.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${siteConfig.company.name} on Instagram`}
+                className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-2.5"
+              >
+                <InstagramIcon />
+              </a>
+            )}
             <a
               href={`mailto:${siteConfig.email}`}
               aria-label="Email"
-              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-1"
+              className="text-text-secondary hover:text-text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-sm p-2.5"
             >
               <MailIcon />
             </a>
