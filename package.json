@@ -1,23 +1,36 @@
 {
-  "name": "shivam-portfolio",
-  "version": "1.0.1",
+  "name": "workwithshivam",
+  "version": "0.1.0",
   "private": true,
-  "type": "module",
-  "packageManager": "pnpm@12.3.4",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "start": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test:email": "node scripts/test-email.mjs"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "^5.7.3",
-    "vite": "latest"
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^13.4.1",
+    "next": "^14.2.35",
+    "nodemailer": "^10.0.13",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.7.0",
+    "three": "^0.187.0"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.3.3",
-    "tailwindcss": "^4.3.3"
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@types/three": "^0.187.0",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
