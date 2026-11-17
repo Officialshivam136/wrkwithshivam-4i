@@ -4,6 +4,7 @@ import { getProjectBySlug, projects } from '@/data/projects';
 import { siteConfig } from '@/data/site';
 import Link from 'next/link';
 import Image from 'next/image';
+import { withBase } from '@/lib/runtime';
 
 interface ProjectPageProps {
   params: { slug: string };
@@ -104,7 +105,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
         <div className="max-w-5xl mx-auto">
           {project.image ? (
             <Image
-              src={project.image}
+              src={withBase(project.image)}
               alt={project.title}
               width={1200}
               height={750}

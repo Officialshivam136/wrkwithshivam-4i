@@ -14,6 +14,8 @@ import {
   type BookingDay,
 } from '@/lib/booking';
 import { siteConfig } from '@/data/site';
+import { submitBooking, type SubmitMode } from '@/lib/forms';
+import { IS_STATIC } from '@/lib/runtime';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -59,6 +61,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
   const [error, setError] = useState('');
   const [calendarUrl, setCalendarUrl] = useState('');
   const [confirmationSent, setConfirmationSent] = useState(false);
+  const [sentVia, setSentVia] = useState<SubmitMode>('server');
 
   const reset = useCallback(() => {
     setStep('date');
@@ -71,6 +74,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     setError('');
     setCalendarUrl('');
     setConfirmationSent(false);
+    setSentVia('server');
     setIsSubmitting(false);
   }, []);
 
@@ -98,6 +102,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
 
   /** Ask the server which times are already booked on a day. */
   const loadBooked = useCallback(async (dateISO: string) => {
+    if (IS_STATIC) return; // no server to ask on the static site
     setLoadingSlots(true);
     try {
       const res = await fetch(`/api/booking?date=${dateISO}`);
@@ -132,31 +137,29 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
     setError('');
 
     try {
-      const response = await fetch('/api/booking', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          date: selectedDate,
-          time: selectedTime,
-          timeZone: visitorTimeZone(),
-        }),
+      const result = await submitBooking({
+        name: name.trim(),
+        email: email.trim(),
+        date: selectedDate,
+        time: selectedTime,
+        dateLabel: formatDateLabel(selectedDate),
+        timeLabel: TIME_SLOTS.find((s) => s.time === selectedTime)?.label ?? selectedTime,
+        timeZone: visitorTimeZone(),
       });
-      const data = await response.json().catch(() => null);
 
-      if (!response.ok) {
-        if (response.status === 409) {
+      if (!result.ok) {
+        if (result.status === 409) {
           // Someone else took it a moment ago — send them back to pick another time.
           setSelectedTime(null);
           setStep('time');
           loadBooked(selectedDate);
         }
-        setError(data?.message || 'Something went wrong. Please try again.');
+        setError(result.message || 'Something went wrong. Please try again.');
         return;
       }
 
-      setConfirmationSent(Boolean(data?.confirmationSent));
+      setSentVia(result.mode);
+      setConfirmationSent(Boolean(result.confirmationSent));
       setCalendarUrl(buildGoogleCalendarUrl(selectedDate, selectedTime, name.trim(), email.trim()));
       setStep('confirmed');
     } catch {
@@ -367,7 +370,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                         <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>
                         Booking...
                       </>
-                    ) : 'Confirm Booking'}
+                    ) : IS_STATIC ? 'Send request' : 'Confirm Booking'}
                   </button>
                 </div>
               )}
@@ -380,7 +383,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  <h4 className="font-heading text-xl font-bold text-text-primary">Call Booked!</h4>
+                  <h4 className="font-heading text-xl font-bold text-text-primary">{sentVia === 'mailto' ? 'One last step' : sentVia === 'endpoint' ? 'Request received' : 'Call Booked!'}</h4>
                   <p className="text-sm text-text-secondary mt-2">
                     {dateLabel} at {slotLabel} {BOOKING_TZ_LABEL}
                   </p>
@@ -388,9 +391,13 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   <p className="text-xs text-text-tertiary mt-1">{DURATION} minutes &bull; Google Meet</p>
 
                   <p className="text-sm text-text-secondary mt-5 max-w-xs mx-auto">
-                    {confirmationSent
-                      ? `A confirmation with a calendar invite is on its way to ${email.trim()}.`
-                      : 'Your slot is reserved. Add it to your calendar below so you don’t miss it.'}
+                    {sentVia === 'mailto'
+                      ? 'Your email app should have opened with the details. Press send to complete your request. Shivam will confirm the time by email.'
+                      : sentVia === 'endpoint'
+                        ? 'Shivam will confirm this time with you by email shortly.'
+                        : confirmationSent
+                          ? `A confirmation with a calendar invite is on its way to ${email.trim()}.`
+                          : 'Your slot is reserved. Add it to your calendar below so you don’t miss it.'}
                   </p>
 
                   <a

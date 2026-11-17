@@ -7,9 +7,11 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Container } from '@/components/ui/Container';
 import { Button } from '@/components/ui/Button';
 import { siteConfig } from '@/data/site';
+import { submitContact, type SubmitMode } from '@/lib/forms';
 
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [sentVia, setSentVia] = useState<SubmitMode>('server');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [serverError, setServerError] = useState('');
 
@@ -72,24 +74,21 @@ export function Contact() {
     setServerError('');
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          projectType: formData.projectType,
-          budget: formData.budget,
-          timeline: formData.timeline,
-          message: formData.message,
-        }),
+      const result = await submitContact({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        projectType: formData.projectType,
+        budget: formData.budget,
+        timeline: formData.timeline,
+        message: formData.message,
       });
 
-      if (!response.ok) {
+      if (!result.ok) {
         throw new Error('Failed to send message');
       }
 
+      setSentVia(result.mode);
       setStatus('success');
     } catch (error) {
       setStatus('error');
@@ -216,10 +215,12 @@ export function Contact() {
                   </svg>
                 </div>
                 <h4 className="font-heading text-2xl font-bold text-text-primary mb-2">
-                  Message Sent!
+                  {sentVia === 'mailto' ? 'One last step' : 'Message Sent!'}
                 </h4>
-                <p className="text-text-secondary mb-8">
-                  Thanks for reaching out. I&apos;ll get back to you within 24 hours.
+                <p className="text-text-secondary mb-8 max-w-sm">
+                  {sentVia === 'mailto'
+                    ? 'Your email app should have opened with your message filled in. Press send to complete it. Nothing is sent until you do.'
+                    : "Thanks for reaching out. I'll get back to you within 24 hours."}
                 </p>
                 <button
                   onClick={resetForm}

@@ -8,6 +8,7 @@ import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { TiltCard } from '@/components/ui/TiltCard';
 import { experience, type Experience } from '@/data/experience';
+import { withBase } from '@/lib/runtime';
 
 const typeBadge: Record<Experience['type'], { label: string; className: string }> = {
   founder: { label: 'Founder · Freelance', className: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30' },
@@ -47,7 +48,7 @@ export function ExperienceSection() {
             className="mb-0 md:mb-0"
           />
           <motion.a
-            href="/shivam-singh-resume.docx"
+            href={withBase('/shivam-singh-resume.docx')}
             download
             variants={fadeInUp}
             initial="hidden"

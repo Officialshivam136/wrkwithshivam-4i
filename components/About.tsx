@@ -6,6 +6,7 @@ import { slideInLeft, slideInRight } from '@/lib/animations';
 import { Container } from '@/components/ui/Container';
 import { TiltCard } from '@/components/ui/TiltCard';
 import { siteConfig } from '@/data/site';
+import { withBase } from '@/lib/runtime';
 
 export function About() {
   return (
@@ -68,7 +69,7 @@ export function About() {
               <div className="absolute -inset-4 bg-accent/10 rounded-3xl blur-2xl" />
               <div className="relative rounded-2xl border border-border-light overflow-hidden bg-bg-secondary shadow-2xl shadow-black/20">
                 <img
-                  src="/shivam-singh.jpg"
+                  src={withBase('/shivam-singh.jpg')}
                   alt="Shivam Singh — Full-Stack Developer"
                   className="w-[300px] h-[370px] sm:w-[380px] sm:h-[460px] object-cover object-top"
                 />

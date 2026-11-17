@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { fadeInUp } from '@/lib/animations';
 import { type Project } from '@/data/projects';
 import { TiltCard } from '@/components/ui/TiltCard';
+import { withBase } from '@/lib/runtime';
 
 interface ProjectCardProps {
   project: Project;
@@ -31,7 +32,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
         {project.image ? (
           <>
             <Image
-              src={project.image}
+              src={withBase(project.image)}
               alt={project.title}
               fill
               unoptimized
