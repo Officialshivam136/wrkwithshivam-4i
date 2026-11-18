@@ -28,7 +28,7 @@ export function About() {
 
             <p className="mt-6 text-text-secondary text-lg leading-relaxed">
               I&apos;m Shivam Singh — a Computer Science Engineer, full-stack
-              developer and the founder of{' '}
+              developer and an AI Engineer at{' '}
               <span className="text-text-primary font-medium">{siteConfig.company.name}</span>,
               {' '}{siteConfig.company.location.split(',')[0]}. I specialize in modern web
               applications, SaaS products, AI automations and AI-powered systems.
@@ -76,7 +76,7 @@ export function About() {
               </div>
               {/* Floating badge, lifted off the photo in 3D */}
               <div className="absolute -bottom-5 -left-5 rounded-xl border border-border-light bg-bg-elevated/90 backdrop-blur px-4 py-3 shadow-xl shadow-black/40 [transform:translateZ(50px)]">
-                <p className="text-[11px] uppercase tracking-[0.18em] text-text-tertiary">Founder</p>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-text-tertiary">AI Engineer</p>
                 <p className="font-heading font-semibold text-text-primary text-sm mt-0.5">{siteConfig.company.name}</p>
               </div>
             </div>

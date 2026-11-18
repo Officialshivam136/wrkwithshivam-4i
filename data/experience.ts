@@ -9,7 +9,7 @@ export interface Experience {
   id: string;
   role: string;
   company: string;
-  type: 'founder' | 'full-time' | 'internship' | 'freelance';
+  type: 'ai-engineer' | 'full-time' | 'internship' | 'freelance';
   /** Leave empty to show only the end date (e.g. "Present"). */
   startDate?: string;
   endDate: string;
@@ -19,23 +19,22 @@ export interface Experience {
   links?: ExperienceLink[];
 }
 
-const companyLinks: ExperienceLink[] = [
-  { label: 'Instagram', href: siteConfig.company.instagram },
-  { label: 'Google', href: siteConfig.company.google },
-].filter((link) => link.href);
+const companyLinks: ExperienceLink[] = siteConfig.company.instagram
+  ? [{ label: 'Instagram', href: siteConfig.company.instagram }]
+  : [];
 
 export const experience: Experience[] = [
   {
-    id: 'founder',
-    role: 'Founder & Freelance Developer',
+    id: 'ai-engineer',
+    role: 'AI Engineer',
     company: siteConfig.company.name,
-    type: 'founder',
+    type: 'ai-engineer',
     endDate: 'Present',
     location: siteConfig.company.location,
     summary:
-      'My own studio — where I take on freelance projects for businesses and startups.',
+      'Building AI automations, assistants and web products for businesses and startups.',
     highlights: [
-      `Founded ${siteConfig.company.name} in Bijnor to build websites, SaaS products, AI automations and AI-powered tools for businesses and startups.`,
+      `Build AI automations, voice assistants, websites and SaaS products at ${siteConfig.company.name} in Bijnor for businesses and startups.`,
       'Own every client project end to end — discovery, design, development, deployment and ongoing support.',
       'Help local businesses move online with fast, mobile-first websites that are easy to find and easy to use.',
       'Work directly with founders and owners, turning rough ideas into clear scope, timelines and shipped products.',

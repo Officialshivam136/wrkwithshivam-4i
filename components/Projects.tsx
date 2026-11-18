@@ -7,13 +7,14 @@ import { HeroProject } from '@/components/HeroProject';
 
 export function Projects() {
   const featured = getFeaturedProjects();
+  // The flagship project gets the big card at the very top; the rest stay in the grid below.
   const heroProject = featured.find((p) => p.hero);
   const projects = featured.filter((p) => !p.hero);
 
   return (
     <section id="work" className="py-24 md:py-32 bg-bg-secondary">
       <Container className="max-w-7xl">
-        <SectionHeading eyebrow="Portfolio" title="SELECTED WORK" />
+        <SectionHeading eyebrow="Portfolio" title="Selected Work." />
 
         {heroProject && (
           <div className="mt-12">

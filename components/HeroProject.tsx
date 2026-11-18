@@ -92,6 +92,75 @@ const scenarios: Scenario[] = [
   },
 ];
 
+/** Live countdown to the launch date. Rendered after mount so server and browser agree. */
+function Countdown({ launchDate, reduceMotion }: { launchDate: string; reduceMotion: boolean }) {
+  const target = new Date(launchDate).getTime();
+  const [now, setNow] = useState<number | null>(null);
+
+  useEffect(() => {
+    setNow(Date.now());
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const remaining = now === null ? null : Math.max(0, target - now);
+  const launched = remaining === 0;
+  const total = remaining === null ? 0 : Math.floor(remaining / 1000);
+  const parts = [
+    { label: 'Days', value: Math.floor(total / 86400) },
+    { label: 'Hours', value: Math.floor((total % 86400) / 3600) },
+    { label: 'Minutes', value: Math.floor((total % 3600) / 60) },
+    { label: 'Seconds', value: total % 60 },
+  ];
+  const dateLabel = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Kolkata' }).format(target);
+
+  return (
+    <div className="mt-7">
+      <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-text-tertiary">
+        {launched ? 'Launch day is here' : `Launching ${dateLabel}`}
+      </p>
+      {launched ? (
+        <p className="rounded-xl border border-emerald-500/40 bg-emerald-500/10 px-4 py-3 text-sm font-semibold text-emerald-700 dark:text-emerald-300">
+          VoiceAI WhatsApp Assistant is launching today. Get in touch for early access.
+        </p>
+      ) : (
+        <div
+          role="timer"
+          aria-label={
+            remaining === null
+              ? 'Countdown to launch'
+              : `${parts[0].value} days, ${parts[1].value} hours and ${parts[2].value} minutes until launch`
+          }
+          className="flex gap-2.5 sm:gap-3"
+        >
+          {parts.map((part) => (
+            <div
+              key={part.label}
+              className="flex min-w-[64px] flex-1 flex-col items-center rounded-xl border border-border-light bg-bg-secondary/80 px-2 py-3 shadow-sm backdrop-blur sm:max-w-[84px]"
+            >
+              <span className="relative h-9 overflow-hidden font-heading text-3xl font-bold leading-9 tabular-nums text-text-primary sm:h-10 sm:text-4xl sm:leading-10">
+                <AnimatePresence mode="popLayout" initial={false}>
+                  <motion.span
+                    key={remaining === null ? 'x' : part.value}
+                    initial={reduceMotion ? false : { y: '70%', opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={reduceMotion ? { opacity: 0 } : { y: '-70%', opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="block"
+                  >
+                    {remaining === null ? '--' : String(part.value).padStart(2, '0')}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              <span className="mt-1 text-[10px] font-medium uppercase tracking-[0.14em] text-text-tertiary">{part.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 const WAVE = [6, 12, 8, 16, 10, 18, 7, 14, 20, 9, 15, 6, 12, 17, 8, 13, 10, 5];
 
 function VoiceBubble({ seconds }: { seconds: string }) {
@@ -257,6 +326,8 @@ export function HeroProject({ project }: { project: Project }) {
                 One assistant, right inside WhatsApp. Just say what you need &mdash; it books your
                 groceries, flights, trains and movies, all in one chat.
               </p>
+
+              {project.launchDate && <Countdown launchDate={project.launchDate} reduceMotion={reduceMotion} />}
 
               {/* What it handles — pick one to preview it */}
               <div className="mt-7" role="group" aria-label="Preview what the assistant can book">

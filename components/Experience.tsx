@@ -11,7 +11,7 @@ import { experience, type Experience } from '@/data/experience';
 import { withBase } from '@/lib/runtime';
 
 const typeBadge: Record<Experience['type'], { label: string; className: string }> = {
-  founder: { label: 'Founder · Freelance', className: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30' },
+  'ai-engineer': { label: 'AI Engineer', className: 'bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/30' },
   'full-time': { label: 'Full-Time', className: 'bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border-emerald-500/25' },
   internship: { label: 'Internship', className: 'bg-blue-500/10 text-blue-700 dark:text-blue-400 border-blue-500/25' },
   freelance: { label: 'Freelance', className: 'bg-accent/10 text-accent-hover border-accent/25' },

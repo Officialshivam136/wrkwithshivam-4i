@@ -72,7 +72,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.65 }}
             className="text-base md:text-lg text-text-secondary max-w-lg mt-8 leading-relaxed"
           >
-            I&apos;m Shivam Singh — full-stack developer and founder of{' '}
+            I&apos;m Shivam Singh — full-stack developer and AI Engineer at{' '}
             <span className="text-text-primary font-medium">{siteConfig.company.name}</span>.
             I design and engineer modern websites, SaaS products, AI automations and AI-powered
             systems for startups and businesses.

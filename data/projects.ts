@@ -14,6 +14,8 @@ export interface Project {
   status: 'published' | 'coming-soon' | 'draft';
   /** Shown as the large flagship card above the project grid. */
   hero?: boolean;
+  /** When a coming-soon project launches (ISO date with offset). Shows a live countdown on its card. */
+  launchDate?: string;
   problem?: string;
   goal?: string;
   solution?: string;
@@ -181,6 +183,7 @@ export const projects: Project[] = [
     technologies: ['Voice AI', 'WhatsApp', 'Automation'],
     featured: true,
     hero: true,
+    launchDate: '2026-11-20T00:00:00+05:30', // 20 Nov 2026, 12:00 AM IST
     status: 'coming-soon',
     goal: 'Replace a phone full of booking apps with one assistant you can talk to on WhatsApp.',
     features: [
