@@ -163,7 +163,7 @@ export async function POST(request: NextRequest) {
     attachments,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
-        <h2 style="color:#6366f1;">New call booked</h2>
+        <h2 style="color:#2563eb;">New call booked</h2>
         <table style="width:100%;border-collapse:collapse;">
           <tr><td style="padding:8px 4px;color:#888;width:110px;">Name</td><td style="padding:8px 4px;font-weight:600;">${e.name}</td></tr>
           <tr><td style="padding:8px 4px;color:#888;">Email</td><td style="padding:8px 4px;"><a href="mailto:${e.email}">${e.email}</a></td></tr>
@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
     attachments,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:520px;margin:0 auto;">
-        <h2 style="color:#6366f1;">You're booked ✓</h2>
+        <h2 style="color:#ea580c;">You're booked ✓</h2>
         <p>Hi ${e.name}, your ${BOOKING_DURATION}-minute call with ${OWNER_NAME} is confirmed.</p>
         <p style="font-size:16px;"><b>${e.date}</b> at <b>${e.time}</b>${e.local ? `<br><span style="color:#666;font-size:14px;">That is ${e.local} where you are.</span>` : ''}</p>
         <p>${meetingLink ? `Join here: <a href="${escapeHtml(meetingLink)}">${escapeHtml(meetingLink)}</a>` : 'A Google Meet link will be shared with you by email before the call.'}</p>

@@ -160,7 +160,7 @@ export function TagSphere({ tags, activeGroup, className }: TagSphereProps) {
               className={cn(
                 'block whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors duration-300',
                 lit
-                  ? 'border-accent/50 bg-bg-elevated text-text-primary shadow-[0_0_18px_rgba(99,102,241,0.25)]'
+                  ? 'border-accent/50 bg-bg-elevated text-text-primary shadow-[0_0_18px_rgba(59,130,246,0.3)]'
                   : 'border-border bg-bg-primary text-text-tertiary'
               )}
             >

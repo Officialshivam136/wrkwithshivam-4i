@@ -29,13 +29,13 @@ export function Process() {
           <div className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-border-light" />
           <motion.div
             style={{ scaleX: progress }}
-            className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px origin-left bg-gradient-to-r from-accent via-cyan-400 to-pink-400"
+            className="hidden md:block absolute top-6 left-[12.5%] right-[12.5%] h-px origin-left bg-gradient-to-r from-accent to-emerald-400"
           />
           {/* Mobile connecting line */}
           <div className="md:hidden absolute top-6 bottom-6 left-6 w-px bg-border-light" />
           <motion.div
             style={{ scaleY: progress }}
-            className="md:hidden absolute top-6 bottom-6 left-6 w-px origin-top bg-gradient-to-b from-accent via-cyan-400 to-pink-400"
+            className="md:hidden absolute top-6 bottom-6 left-6 w-px origin-top bg-gradient-to-b from-accent to-emerald-400"
           />
 
           <motion.div
@@ -51,7 +51,7 @@ export function Process() {
                 variants={fadeInUp}
                 className="group flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-0"
               >
-                <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-accent bg-bg-secondary flex items-center justify-center text-accent-hover font-heading font-bold text-sm transition-all duration-300 group-hover:bg-accent group-hover:text-white group-hover:scale-110 group-hover:shadow-[0_0_24px_rgba(99,102,241,0.6)]">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-accent bg-bg-secondary flex items-center justify-center text-accent-hover font-heading font-bold text-sm transition-all duration-300 group-hover:bg-accent group-hover:text-accent-fg group-hover:scale-110 group-hover:shadow-[0_0_0_6px_rgba(59,130,246,0.25)]">
                   {step.number}
                 </div>
 

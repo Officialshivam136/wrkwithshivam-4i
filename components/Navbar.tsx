@@ -141,7 +141,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsBookingOpen(true)}
-              className="inline-flex h-9 items-center gap-2 justify-center rounded-md bg-accent px-5 text-[13px] font-semibold uppercase tracking-[0.05em] text-white transition-all hover:bg-accent-hover hover:shadow-lg hover:shadow-accent/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+              className="inline-flex h-9 items-center gap-2 justify-center rounded-md bg-accent px-5 text-[13px] font-semibold uppercase tracking-[0.05em] text-accent-fg transition-all hover:bg-accent-hover hover:shadow-lg hover:shadow-black/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <rect x="3" y="4" width="18" height="18" rx="2" />
@@ -223,7 +223,7 @@ export function Navbar() {
               >
                 <button
                   onClick={() => { setIsMobileMenuOpen(false); setIsBookingOpen(true); }}
-                  className="inline-flex h-12 items-center gap-2 justify-center rounded-md bg-accent px-8 text-base font-semibold uppercase tracking-wider text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
+                  className="inline-flex h-12 items-center gap-2 justify-center rounded-md bg-accent px-8 text-base font-semibold uppercase tracking-wider text-accent-fg transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <rect x="3" y="4" width="18" height="18" rx="2" />

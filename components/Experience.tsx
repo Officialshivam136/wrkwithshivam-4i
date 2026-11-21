@@ -116,7 +116,7 @@ export function ExperienceSection() {
                   <span
                     className={cn(
                       'hidden lg:block absolute left-[14px] top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full ring-4 ring-bg-secondary transition-colors',
-                      isActive ? 'bg-accent-hover shadow-[0_0_14px_3px_rgba(129,140,248,0.6)]' : 'bg-border-light'
+                      isActive ? 'bg-accent-hover shadow-[0_0_14px_3px_rgba(59,130,246,0.6)]' : 'bg-border-light'
                     )}
                   />
                   <span className="relative block font-heading font-semibold text-[15px] leading-snug">

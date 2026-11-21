@@ -222,7 +222,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   <div className={cn(
                     'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold transition-colors',
                     step === s || (['time', 'details', 'confirmed'].indexOf(step) > ['date', 'time', 'details'].indexOf(s))
-                      ? 'bg-accent text-white'
+                      ? 'bg-accent text-accent-fg'
                       : 'bg-bg-elevated text-text-tertiary'
                   )}>
                     {i + 1}
@@ -264,7 +264,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   <button
                     disabled={!selectedDate}
                     onClick={goToTimes}
-                    className="w-full mt-6 py-3 rounded-lg bg-accent text-white font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full mt-6 py-3 rounded-lg bg-accent text-accent-fg font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continue
                   </button>
@@ -310,7 +310,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   <button
                     disabled={!selectedTime}
                     onClick={() => setStep('details')}
-                    className="w-full mt-6 py-3 rounded-lg bg-accent text-white font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed"
+                    className="w-full mt-6 py-3 rounded-lg bg-accent text-accent-fg font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-40 disabled:cursor-not-allowed"
                   >
                     Continue
                   </button>
@@ -363,7 +363,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                   <button
                     disabled={isSubmitting}
                     onClick={handleSubmit}
-                    className="w-full mt-6 py-3 rounded-lg bg-accent text-white font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-60 flex items-center justify-center gap-2"
+                    className="w-full mt-6 py-3 rounded-lg bg-accent text-accent-fg font-semibold text-sm transition-all hover:bg-accent-hover disabled:opacity-60 flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
@@ -404,7 +404,7 @@ export function BookingModal({ isOpen, onClose }: BookingModalProps) {
                     href={calendarUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-lg bg-accent text-white font-semibold text-sm hover:bg-accent-hover transition-all"
+                    className="inline-flex items-center gap-2 mt-5 px-6 py-3 rounded-lg bg-accent text-accent-fg font-semibold text-sm hover:bg-accent-hover transition-all"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <rect x="3" y="4" width="18" height="18" rx="2" />

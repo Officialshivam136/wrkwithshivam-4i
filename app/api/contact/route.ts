@@ -43,7 +43,7 @@ async function sendEmail(data: Submission): Promise<boolean> {
     subject: `New Project Enquiry from ${data.name} — ${data.projectType}`,
     html: `
       <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
-        <h2 style="color:#6366f1;">New Contact Form Submission</h2>
+        <h2 style="color:#2563eb;">New Contact Form Submission</h2>
         <table style="width:100%;border-collapse:collapse;">
           <tr><td style="padding:8px 4px;color:#888;width:120px;">Name</td><td style="padding:8px 4px;font-weight:600;">${e.name}</td></tr>
           <tr><td style="padding:8px 4px;color:#888;">Email</td><td style="padding:8px 4px;"><a href="mailto:${e.email}">${e.email}</a></td></tr>

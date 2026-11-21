@@ -299,8 +299,7 @@ export function HeroProject({ project }: { project: Project }) {
         <div className="relative overflow-hidden rounded-3xl border border-emerald-400/25 bg-bg-primary">
           {/* Glow */}
           <div className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-emerald-500/15 blur-[110px]" />
-          <div className="pointer-events-none absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-accent/15 blur-[120px]" />
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(128,128,140,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(128,128,140,0.09)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(128,128,140,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(128,128,140,0.09)_1px,transparent_1px)] bg-[size:48px_48px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
 
           <div className="relative grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-[1.1fr_0.9fr] lg:gap-6 lg:p-14">
             {/* Text */}

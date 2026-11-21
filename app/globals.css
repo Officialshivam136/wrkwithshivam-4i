@@ -16,12 +16,13 @@
   --text-tertiary: #5c5c66;
   --border: #222222;
   --border-light: #333333;
-  --accent: #6366f1;
-  --accent-hover: #818cf8;
-  --grad-1: #818cf8;
+  --accent: #3b82f6;
+  --accent-hover: #60a5fa;
+  --accent-fg: #ffffff; /* text colour used on top of the accent */
+  --grad-1: #60a5fa;
   --grad-2: #22d3ee;
-  --grad-3: #f472b6;
-  --glare: rgba(129, 140, 248, 0.16);
+  --grad-3: #34d399;
+  --glare: rgba(59, 130, 246, 0.14);
   --scroll-thumb: #333333;
 }
 
@@ -35,12 +36,13 @@
   --text-tertiary: #6b7384;
   --border: #e2e5ec;
   --border-light: #cfd4de;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
-  --grad-1: #4f46e5;
+  --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+  --accent-fg: #ffffff;
+  --grad-1: #2563eb;
   --grad-2: #0891b2;
-  --grad-3: #db2777;
-  --glare: rgba(79, 70, 229, 0.09);
+  --grad-3: #059669;
+  --glare: rgba(37, 99, 235, 0.09);
   --scroll-thumb: #c4c9d4;
 }
 
@@ -55,6 +57,7 @@
   --color-border-light: var(--border-light);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-accent-fg: var(--accent-fg);
   --font-heading: var(--font-space-grotesk);
   --font-body: var(--font-inter);
 }
@@ -75,7 +78,7 @@ body {
 
 ::selection {
   background-color: var(--color-accent);
-  color: white;
+  color: var(--color-accent-fg);
 }
 
 ::-webkit-scrollbar {
@@ -104,7 +107,7 @@ html.theme-switching *::after {
   box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px -14px rgba(16, 24, 40, 0.14);
 }
 :root[data-theme="light"] :is(.rounded-2xl, .rounded-3xl).border:not([class*="shadow"]):hover {
-  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 18px 40px -16px rgba(79, 70, 229, 0.25);
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 18px 40px -16px rgba(37, 99, 235, 0.22);
 }
 
 @media (prefers-reduced-motion: reduce) {

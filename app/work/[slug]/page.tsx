@@ -79,7 +79,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-6 py-3 rounded-lg bg-accent text-white font-medium hover:bg-accent-hover transition-colors"
+                    className="px-6 py-3 rounded-lg bg-accent text-accent-fg font-medium hover:bg-accent-hover transition-colors"
                   >
                     Live Demo
                   </a>

@@ -87,13 +87,13 @@ function Browser() {
             <span className="block h-1.5 w-5/6 rounded bg-border-light" />
             <span className="mt-2.5 block h-5 w-16 rounded-md bg-accent" />
           </div>
-          <div className="h-16 rounded-lg bg-gradient-to-br from-accent/60 via-cyan-400/50 to-pink-400/50" />
+          <div className="h-16 rounded-lg bg-gradient-to-br from-accent/60 to-cyan-400/50" />
         </div>
       </div>
       {/* Phone */}
       <div className="absolute -bottom-1 right-5 h-[88px] w-[46px] rounded-xl border-2 border-border-light bg-bg-secondary p-1 shadow-lg">
         <span className="block h-1.5 w-full rounded bg-accent/70" />
-        <span className="mt-1 block h-5 w-full rounded bg-gradient-to-br from-accent/50 to-pink-400/50" />
+        <span className="mt-1 block h-5 w-full rounded bg-gradient-to-br from-accent/60 to-cyan-400/50" />
         <span className="mt-1 block h-1 w-full rounded bg-border-light" />
         <span className="mt-1 block h-1 w-3/4 rounded bg-border-light" />
         <span className="mt-1.5 block h-3 w-full rounded bg-accent" />
@@ -108,8 +108,8 @@ function Chat() {
     <div className={frame}>
       <div className="absolute inset-3 flex flex-col justify-center gap-2.5">
         <div className="ml-auto flex w-[50%] flex-col gap-1 rounded-xl rounded-tr-sm bg-accent px-3 py-2">
-          <span className="block h-1.5 w-full rounded bg-white/80" />
-          <span className="block h-1.5 w-2/3 rounded bg-white/60" />
+          <span className="block h-1.5 w-full rounded bg-accent-fg/80" />
+          <span className="block h-1.5 w-2/3 rounded bg-accent-fg/60" />
         </div>
         <div className="flex w-[68%] items-start gap-2 rounded-xl rounded-tl-sm border border-border bg-bg-secondary px-3 py-2">
           <span className="mt-0.5 text-accent">

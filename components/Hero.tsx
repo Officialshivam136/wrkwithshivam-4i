@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
-import { HeroCanvas } from '@/components/three/HeroCanvas';
+import { HeroShowcase } from '@/components/HeroShowcase';
 import { siteConfig } from '@/data/site';
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -20,17 +20,11 @@ export function Hero() {
       className="relative min-h-screen flex items-center overflow-hidden"
     >
       {/* Subtle background grid, faded toward the edges */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(99,102,241,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(99,102,241,0.05)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(128,128,140,0.09)_1px,transparent_1px),linear-gradient(90deg,rgba(128,128,140,0.09)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
 
-      {/* Gradient glows */}
-      <div className="absolute top-1/3 right-[10%] w-[520px] h-[520px] bg-accent/[0.12] rounded-full blur-[130px] pointer-events-none" />
-      <div className="absolute bottom-0 left-[5%] w-[380px] h-[380px] bg-cyan-500/[0.05] rounded-full blur-[120px] pointer-events-none" />
-
-      {/* 3D scene — a dimmed backdrop on small screens, interactive on desktop */}
-      <HeroCanvas className="absolute inset-0 opacity-30 pointer-events-none lg:opacity-100 lg:pointer-events-auto lg:left-auto lg:right-0 lg:w-[58%] lg:[mask-image:linear-gradient(90deg,transparent,black_22%)]" />
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-8 lg:px-12 pt-28 pb-24 pointer-events-none">
-        <div className="lg:w-[54%] flex flex-col pointer-events-auto">
+        <div className="lg:w-[50%] flex flex-col pointer-events-auto">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,20 +101,17 @@ export function Hero() {
             ))}
           </motion.div>
         </div>
-      </div>
 
-      {/* Hint for the 3D scene */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.8 }}
-        className="hidden lg:flex absolute bottom-10 right-[29%] translate-x-1/2 items-center gap-2 rounded-full border border-border-light bg-bg-secondary/70 backdrop-blur px-4 py-2 text-xs text-text-secondary pointer-events-none"
-      >
-        <svg className="w-3.5 h-3.5 text-accent-hover" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M9 11V5a2 2 0 1 1 4 0v6m0-2a2 2 0 1 1 4 0v2m0-1a2 2 0 1 1 4 0v5a7 7 0 0 1-7 7h-1a7 7 0 0 1-6-3.5L4.5 15a2 2 0 0 1 3.4-2L9 14" />
-        </svg>
-        Drag to rotate &middot; click the core
-      </motion.div>
+        {/* My work, as a 3D deck. Below the text on phones, beside it on desktop. */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="pointer-events-auto mt-14 lg:absolute lg:right-6 lg:top-1/2 lg:mt-0 lg:w-[46%] lg:-translate-y-1/2 xl:right-12"
+        >
+          <HeroShowcase />
+        </motion.div>
+      </div>
 
       {/* Scroll Indicator */}
       <motion.a
